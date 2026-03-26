@@ -1,0 +1,41 @@
+register_reset queue_bound
+
+register_reset total_inversions
+register_reset rank_inversions_sppifo
+register_reset rank_inversions_fifo
+register_reset last_enqueued_rank
+
+register_reset transmition_model
+register_write transmition_model 0 0
+
+register_reset int_byte_ingress
+register_reset int_byte_egress
+register_reset int_count_ingress
+register_reset int_count_egress
+register_reset int_last_time_ingress
+register_reset int_last_time_egress
+
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.170.170.2/24 => a0:36:9f:d9:3b:80 a0:36:9f:a8:5c:b8 2
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.180.180.2/24 => a0:36:9f:d9:3b:81 a0:36:9f:d9:3b:19 4
+
+table_add probe_exact probe_forward 168 => a0:36:9f:d5:24:93 e8:61:1f:37:b6:71 1
+table_add probe_exact probe_forward 178 => a0:36:9f:d9:3b:83 a0:36:9f:08:c7:b6 5
+table_add probe_exact probe_forward 182 => a0:36:9f:d9:3b:82 a0:36:9f:ed:5c:62 3
+table_add probe_exact probe_forward 184 => a0:36:9f:d9:3b:81 a0:36:9f:d9:3b:19 4
+table_add probe_exact probe_forward 186 => a0:36:9f:d9:3b:80 a0:36:9f:a8:5c:b8 2
+
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.168.168.200/32 => a0:36:9f:d5:24:93 08:00:01:68:02:00 1
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.168.168.201/32 => a0:36:9f:d5:24:93 08:00:01:68:02:01 1
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.168.168.202/32 => a0:36:9f:d5:24:93 08:00:01:68:02:02 1
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.168.168.203/32 => a0:36:9f:d5:24:93 08:00:01:68:02:03 1
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.168.168.204/32 => a0:36:9f:d5:24:93 08:00:01:68:02:04 1
+
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.162.162.0/24 => a0:36:9f:d9:3b:82 a0:36:9f:ed:5c:62 3
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.164.164.0/24 => a0:36:9f:d9:3b:81 a0:36:9f:d9:3b:19 4
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.166.166.0/24 => a0:36:9f:d9:3b:80 a0:36:9f:a8:5c:b8 2
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.168.168.2/32 => a0:36:9f:d5:24:93 e8:61:1f:37:b6:71 1
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.172.172.0/24 => a0:36:9f:d9:3b:82 a0:36:9f:ed:5c:62 3
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.174.174.0/24 => a0:36:9f:d9:3b:83 a0:36:9f:08:c7:b6 5
+
+
+

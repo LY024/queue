@@ -1,0 +1,70 @@
+register_reset transmition_model
+register_write transmition_model 0 1
+
+register_reset multipath_ability
+register_reset multipath_count
+register_reset multipath_initial
+register_reset multipath_order
+
+register_reset int_byte_ingress
+register_reset int_byte_egress
+register_reset int_count_ingress
+register_reset int_count_egress
+register_reset int_last_time_ingress
+register_reset int_last_time_egress
+
+register_reset congestion_time_reg
+register_reset num_flow
+register_reset byte_dropped_cnt_reg
+register_reset max_cwnd_reg
+register_reset cur_cwnd_reg
+register_reset modify_time_reg
+
+table_add ipv4_is_for_video packet_cannot_multipath 10.170.170.2/24 =>
+table_add ipv4_is_for_video packet_cannot_multipath 10.180.180.2/24 =>
+
+table_add ipv4_singlepath_lpm ipv4_singlepath 10.170.170.2/24 => a0:36:9f:ed:5c:61 a0:36:9f:a8:5c:b9 4
+table_add ipv4_singlepath_lpm ipv4_singlepath 10.180.180.2/24 => a0:36:9f:ed:5c:60 a0:36:9f:d9:3b:18 2
+
+table_add ipv4_is_for_eccn packet_can_eccn 10.166.166.201 10.162.162.200 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.166.166.201 10.164.164.200 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.166.166.201 10.168.168.200 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.166.166.202 10.162.162.200 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.166.166.202 10.164.164.200 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.166.166.202 10.168.168.200 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.166.166.203 10.162.162.200 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.166.166.203 10.164.164.200 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.166.166.203 10.168.168.200 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.166.166.204 10.162.162.200 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.162.162.200 10.166.166.201 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.162.162.200 10.166.166.202 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.162.162.200 10.166.166.203 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.162.162.200 10.166.166.204 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.164.164.200 10.166.166.201 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.164.164.200 10.166.166.202 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.164.164.200 10.166.166.203 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.168.168.200 10.166.166.201 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.168.168.200 10.166.166.202 =>
+table_add ipv4_is_for_eccn packet_can_eccn 10.168.168.200 10.166.166.203 =>
+
+table_add probe_exact probe_forward 162 => a0:36:9f:ed:55:63 e8:61:1f:37:b6:d3 1
+table_add probe_exact probe_forward 176 => a0:36:9f:ed:5c:63 a0:36:9f:08:d1:2b 5
+table_add probe_exact probe_forward 184 => a0:36:9f:ed:5c:60 a0:36:9f:d9:3b:18 2
+table_add probe_exact probe_forward 186 => a0:36:9f:ed:5c:61 a0:36:9f:a8:5c:b9 4
+table_add probe_exact probe_forward 188 => a0:36:9f:ed:5c:62 a0:36:9f:d9:3b:82 3
+
+
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.162.162.200/32 => a0:36:9f:ed:55:63 08:00:01:62:02:00 1
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.162.162.201/32 => a0:36:9f:ed:55:63 08:00:01:62:02:01 1
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.162.162.202/32 => a0:36:9f:ed:55:63 08:00:01:62:02:02 1
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.162.162.203/32 => a0:36:9f:ed:55:63 08:00:01:62:02:03 1
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.162.162.204/32 => a0:36:9f:ed:55:63 08:00:01:62:02:04 1
+
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.162.162.0/24 => a0:36:9f:ed:55:63 e8:61:1f:37:b6:d3 1
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.164.164.0/24 => a0:36:9f:ed:5c:60 a0:36:9f:d9:3b:18 2
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.166.166.0/24 => a0:36:9f:ed:5c:61 a0:36:9f:a8:5c:b9 4
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.168.168.0/24 => a0:36:9f:ed:5c:62 a0:36:9f:d9:3b:82 3
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.172.172.0/24 => a0:36:9f:ed:5c:63 a0:36:9f:08:d1:2b 5
+table_add ipv4_million_tcp ipv4_forward_million_tcp 10.174.174.0/24 => a0:36:9f:ed:5c:62 a0:36:9f:d9:3b:82 3
+
+
