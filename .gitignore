@@ -1,2 +1,4 @@
 mappo/.venv/
+mappo/.__pycache__/
 .vscode/
+.gitignore
